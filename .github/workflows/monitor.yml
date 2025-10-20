@@ -1,0 +1,30 @@
+name: Run monitor
+
+on:
+  schedule:
+    - cron: '52 15 * * *'
+  workflow_dispatch: {}      # 仍可手动触发
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run monitor.py
+        run: python monitor.py
+        env:
+          FRED_API_KEY:        ${{ secrets.FRED_API_KEY }}
+          SMTP_HOST:           ${{ secrets.SMTP_HOST }}
+          SMTP_PORT:           ${{ secrets.SMTP_PORT }}
+          SMTP_USER:           ${{ secrets.SMTP_USER }}
+          SMTP_PASS:           ${{ secrets.SMTP_PASS }}
+          EMAIL_FROM:          ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO:            ${{ secrets.EMAIL_TO }}
+          ALERT_MENTION:       ${{ vars.ALERT_MENTION }}
+          SMTP_USE_SSL:        ${{ vars.SMTP_USE_SSL }}
+          SMTP_TIMEOUT:        ${{ vars.SMTP_TIMEOUT }}
