@@ -258,7 +258,7 @@ def send_email(subject: str, body: str, html: bool=False):
     subtype = "html" if html else "plain"
     msg.attach(MIMEText(body, subtype, "utf-8"))
 
-    timeout = int(os.getenv("SMTP_TIMEOUT", "30"))
+    timeout = 30
     use_ssl_env = os.getenv("SMTP_USE_SSL", "").lower() in ("1", "true", "yes")
 
     def _send_starttls():
