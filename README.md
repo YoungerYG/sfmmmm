@@ -4,21 +4,19 @@
 - 数据源：**FRED API**（圣路易斯联储），仅需一个 `FRED_API_KEY`。
 - 指标覆盖：CPI（CPIAUCSL）、核心PCE（PCEPILFE）、失业率（UNRATE）、WTI油价（DCOILWTICO）、真实GDP（GDPC1）、密歇根消费者信心（UMCSENT）、全球供应链压力（GSCPI）。
 - 模型：简单的**滞胀风险评分 S(0-100)** = 通胀压力(40%) + 劳动力/失业(25%) + 增长放缓(25%) + 能源(10%)。
-- 通知：默认 **Slack 入站 Webhook**；可选 SMTP 邮件。
+- 通知：默认 SMTP 邮件。
 
 ## 本地运行
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 export FRED_API_KEY=你的key
-# 可选（启用Slack通知）：
-export SLACK_WEBHOOK_URL=https://hooks.slack.com/services/xxx/yyy/zzz
 python monitor.py
 ```
 
 ## GitHub Actions（推荐，免服务器）
 1. 将本仓库推送到 GitHub。
-2. 在 **Settings → Secrets and variables → Actions** 新建：`FRED_API_KEY`、`SLACK_WEBHOOK_URL`。
+2. 在 **Settings → Secrets and variables → Actions** 新建：`FRED_API_KEY`。
 3. Actions 会在工作日 **13:00 UTC** 运行（可在 `.github/workflows/monitor.yml` 中修改 `cron`）。
 
 ## 配置

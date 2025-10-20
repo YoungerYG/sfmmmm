@@ -209,7 +209,7 @@ def compute_risk_and_text(metrics):
     bucket = "低" if score < 30 else "关注" if score < 60 else "显著" if score < 80 else "高"
 
     parts = [
-        f"=====================✅=====================",
+        f"=✅=",
         f"当前滞胀风险评分 **{round(score)}/100（{bucket}）**",
         f"- 核心PCE同比 {fmt(metrics.get('core_pce_yoy'))}%；3个月年化 {fmt(metrics.get('core_pce_3mma_ann'))}%",
         f"- 失业率 Sahm gap {fmt(metrics.get('sahm_gap'))}pct（≥0.5 为衰退信号）",
@@ -217,7 +217,7 @@ def compute_risk_and_text(metrics):
         f"- WTI 原油同比 {fmt(metrics.get('wti_yoy'))}%",
         f"- GSCPI {fmt(metrics.get('gscpi'))}",
         f"- 密歇根信心 {fmt(metrics.get('umich'), 1)}",
-        f"=====================✅=====================",
+        f"=✅=",
     ]
     return int(round(score)), "\n".join(parts)
 
@@ -307,7 +307,7 @@ def main():
 
     ensure_db()
     series_latest, new_flags = {}, []
-    version = "v2025.10.20.1"
+    version = "v2025.10.20.2"
 
     for k, sid in SERIES.items():
         try:
