@@ -2,7 +2,7 @@ name: Run monitor
 
 on:
   schedule:
-    - cron: '52 15 * * *'
+    - cron: '20 4 * * *'
   workflow_dispatch: {}      # 仍可手动触发
 
 jobs:
