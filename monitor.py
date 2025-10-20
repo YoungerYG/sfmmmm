@@ -307,6 +307,7 @@ def main():
 
     ensure_db()
     series_latest, new_flags = {}, []
+    version = "v2025.10.20.1"
 
     for k, sid in SERIES.items():
         try:
@@ -344,6 +345,7 @@ def main():
     score, body = compute_risk_and_text(metrics)
     title = f"滞胀关键数据更新：{', '.join(sorted(new_flags))}" if new_flags else "手动运行：最新滞胀风险评估"
     message = textwrap.dedent(f"""
+    当前版本: {version}
     更新时间（UTC）: {datetime.now(timezone.utc):%Y-%m-%d %H:%M}
     新数据：{', '.join(new_flags) if new_flags else '无'}
 
