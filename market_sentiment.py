@@ -171,15 +171,15 @@ def interpret_score(score: int) -> str:
     根据市场情绪得分返回对应的解读。
     """
     if score <= -2:
-        return "📉 市场明显偏冷，短期情绪低迷或恐慌，存在超卖反弹机会。"
+        return f"当前分数: {score} 📉 市场明显偏冷，短期情绪低迷或恐慌，存在超卖反弹机会。"
     elif -1 <= score <= 1:
-        return "😐 市场中性，技术面平衡或震荡，适合观望或轻仓操作。"
+        return f"当前分数: {score} 😐 市场中性，技术面平衡或震荡，适合观望或轻仓操作。"
     elif 2 <= score <= 3:
-        return "⚠️ 市场偏热，短线过度乐观，需谨慎追高或考虑获利了结。"
+        return f"当前分数: {score} ⚠️ 市场偏热，短线过度乐观，需谨慎追高或考虑获利了结。"
     elif score >= 4:
-        return "🔥 市场极度过热，存在显著回调风险，防范情绪化行情。"
+        return f"当前分数: {score} 🔥 市场极度过热，存在显著回调风险，防范情绪化行情。"
     else:
-        return "❓ 无法判断。"
+        return f"当前分数: {score} ❓ 无法判断。"
 
 
 def main():
@@ -227,8 +227,16 @@ def main():
     print("\n=== 最终市场热度分数 ===")
     print(f"当前分数: {score}")
     print(interpret_score(score))
+    
+    indicators = f"""
+    === 指标当前值与解读 ===
+    RSI: {rsi_last:.2f} → {interpret_rsi(rsi_last)}
+    随机指标 Stoch K/D: {k_last:.2f}/{d_last:.2f} → {interpret_stoch(k_last, d_last)}
+    Williams %R: {wr_last:.2f} → {interpret_williams(wr_last)}
+    200日均线乖离: {deviation_pct:.2f}% → {interpret_deviation(deviation_pct)}
+    """
 
-    return interpret_score(score), "\n".join(notes)
+    return interpret_score(score), "\n".join(notes), indicators
 
 
 if __name__ == "__main__":

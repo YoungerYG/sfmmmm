@@ -355,9 +355,9 @@ def main():
     """).strip()
     
     # 获取市场情绪分析结果
-    market_score, market_notes = market_sentiment_main()
+    market_score, market_notes, market_indicators = market_sentiment_main()
     
-    message += f"\n\n=== 市场情绪分析 ===\n{market_notes}\n\n=== 市场情绪评分 ===\n当前市场评分: {market_score}"
+    message += f"\n\n{market_indicators}\n\n=== 市场情绪分析 ===\n{market_notes}\n\n=== 市场情绪评分 ===\n当前市场评分: {market_score}"
 
     print(message)
 #    send_slack(message, title, touched_series=new_flags)
