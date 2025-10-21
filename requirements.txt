@@ -2,3 +2,5 @@ requests>=2.32.0
 python-dotenv>=1.0.1
 pandas>=2.2.2
 numpy>=1.26.4
+yfinance>=0.2.43  # 用于下载股票数据
+TA-Lib>=0.4.0  # 用于计算技术指标
