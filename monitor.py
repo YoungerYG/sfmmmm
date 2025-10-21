@@ -18,6 +18,8 @@ import numpy as np
 from dotenv import load_dotenv
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from market_sentiment import main as market_sentiment_main
+
 
 # ========== 初始化环境变量 ==========
 load_dotenv()
@@ -351,6 +353,11 @@ def main():
 
     {body}
     """).strip()
+    
+    # 获取市场情绪分析结果
+    market_score, market_notes = market_sentiment_main()
+    
+    message += f"\n\n=== 市场情绪分析 ===\n{market_notes}\n\n=== 市场情绪评分 ===\n当前市场评分: {market_score}"
 
     print(message)
 #    send_slack(message, title, touched_series=new_flags)
