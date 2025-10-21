@@ -171,15 +171,15 @@ def interpret_score(score: int) -> str:
     根据市场情绪得分返回对应的解读。
     """
     if score <= -2:
-        return f"当前分数: {score} 📉 市场明显偏冷，短期情绪低迷或恐慌，存在超卖反弹机会。"
+        return f"当前分数: {score} \n解读：📉 市场明显偏冷，短期情绪低迷或恐慌，存在超卖反弹机会。"
     elif -1 <= score <= 1:
-        return f"当前分数: {score} 😐 市场中性，技术面平衡或震荡，适合观望或轻仓操作。"
+        return f"当前分数: {score} \n解读：😐 市场中性，技术面平衡或震荡，适合观望或轻仓操作。"
     elif 2 <= score <= 3:
-        return f"当前分数: {score} ⚠️ 市场偏热，短线过度乐观，需谨慎追高或考虑获利了结。"
+        return f"当前分数: {score} \n解读：⚠️ 市场偏热，短线过度乐观，需谨慎追高或考虑获利了结。"
     elif score >= 4:
-        return f"当前分数: {score} 🔥 市场极度过热，存在显著回调风险，防范情绪化行情。"
+        return f"当前分数: {score} \n解读：🔥 市场极度过热，存在显著回调风险，防范情绪化行情。"
     else:
-        return f"当前分数: {score} ❓ 无法判断。"
+        return f"当前分数: {score} \n解读：❓ 无法判断。"
 
 
 def main():
