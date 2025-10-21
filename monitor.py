@@ -211,15 +211,14 @@ def compute_risk_and_text(metrics):
     bucket = "低" if score < 30 else "关注" if score < 60 else "显著" if score < 80 else "高"
 
     parts = [
-        f"=✅=",
-        f"当前滞胀风险评分 **{round(score)}/100（{bucket}）**",
+        f"✅ 当前滞胀风险评分 **{round(score)}/100（{bucket}）**",
         f"- 核心PCE同比 {fmt(metrics.get('core_pce_yoy'))}%；3个月年化 {fmt(metrics.get('core_pce_3mma_ann'))}%",
         f"- 失业率 Sahm gap {fmt(metrics.get('sahm_gap'))}pct（≥0.5 为衰退信号）",
         f"- 实际GDP q/q {fmt(metrics.get('gdp_qoq'))}%",
         f"- WTI 原油同比 {fmt(metrics.get('wti_yoy'))}%",
         f"- GSCPI {fmt(metrics.get('gscpi'))}",
         f"- 密歇根信心 {fmt(metrics.get('umich'), 1)}",
-        f"=✅=",
+        f"\n",
     ]
     return int(round(score)), "\n".join(parts)
 
@@ -355,9 +354,9 @@ def main():
     """).strip()
     
     # 获取市场情绪分析结果
-    market_score, market_notes, market_indicators = market_sentiment_main()
+    market_score, market_indicators = market_sentiment_main()
     
-    message += f"\n\n{market_indicators}\n\n=== 市场情绪分析 ===\n{market_notes}\n\n=== 市场情绪评分 ===\n当前市场评分: {market_score}"
+    message += f"\n\n{market_indicators}\n=== 市场情绪评分 ===\n{market_score}"
 
     print(message)
 #    send_slack(message, title, touched_series=new_flags)

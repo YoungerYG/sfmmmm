@@ -229,6 +229,7 @@ def main():
     print(interpret_score(score))
     
     indicators = f"""
+    ✅ ^IXIC
     === 指标当前值与解读 ===
     RSI: {rsi_last:.2f} → {interpret_rsi(rsi_last)}
     随机指标 Stoch K/D: {k_last:.2f}/{d_last:.2f} → {interpret_stoch(k_last, d_last)}
@@ -236,7 +237,7 @@ def main():
     200日均线乖离: {deviation_pct:.2f}% → {interpret_deviation(deviation_pct)}
     """
 
-    return interpret_score(score), "\n".join(notes), indicators
+    return interpret_score(score), indicators
 
 
 if __name__ == "__main__":
