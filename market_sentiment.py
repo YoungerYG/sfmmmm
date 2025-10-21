@@ -228,7 +228,7 @@ def main():
     print(f"当前分数: {score}")
     print(interpret_score(score))
 
-    return score, "\n".join(notes)
+    return interpret_score(score), "\n".join(notes)
 
 
 if __name__ == "__main__":
